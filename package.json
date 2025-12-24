@@ -1,0 +1,21 @@
+{
+  "name": "blastmail",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "package/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "format": "npm run prettier",
+    "dev:campaign": "npm run dev --workspace=package/campaign-manager",
+    "dev:worker": "npm run dev --workspace=package/worker",
+    "dev:tracker": "npm run dev --workspace=package/tracker",
+    "build:all": "npm run build --workspaces"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  }
+}

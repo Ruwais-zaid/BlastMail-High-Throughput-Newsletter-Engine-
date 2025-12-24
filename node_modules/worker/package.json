@@ -1,0 +1,33 @@
+{
+  "name": "@blastmail/worker",
+  "version": "1.0.0",
+  "workspaces": [
+    "package/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev:campaign": "npm run dev --workspace=packages/campaign-manager",
+    "dev:worker": "npm run dev --workspace=packages/worker",
+    "dev:frontend": "npm run dev --workspace=packages/frontend"
+  },
+  "dependencies": {
+    "@blastmail/db": "*",
+    "@blastmail/rabbitmq": "*",
+    "@blastmail/redis": "*",
+    "@blastmail/types": "*",
+    "dotenv": "^17.2.3",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^7.0.12",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^20.0.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/nodemailer": "^7.0.4"
+  }
+}

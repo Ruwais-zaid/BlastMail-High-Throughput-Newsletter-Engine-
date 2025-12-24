@@ -1,0 +1,36 @@
+{
+  "name": "@blastmail/campaign-manager",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@blastmail/db": "*",
+    "@blastmail/types": "*",
+    "axios": "^1.13.2",
+    "compression": "^1.8.1",
+    "connect-timeout": "^1.9.1",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "http-status-codes": "^2.3.0",
+    "multer": "^2.0.2",
+    "response-time": "^2.3.4",
+    "Router": "^2.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/compression": "^1.8.1",
+    "@types/connect-timeout": "^1.9.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/lodash": "^4.17.21",
+    "@types/multer": "^2.0.0",
+    "@types/response-time": "^2.3.9"
+  }
+}
