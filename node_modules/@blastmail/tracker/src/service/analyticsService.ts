@@ -1,9 +1,9 @@
 import { query } from '@blastmail/db'
-import { CampaignAnalytics } from '../types/analyticsTypes';
+import { CampaignAnalytics } from '../types/analyticsTypes'
 
-export class AnalyticsService{
-    async getCampaignAnalytics(campaignId:number):Promise<CampaignAnalytics | null>{
-        const sql = `
+export class AnalyticsService {
+  async getCampaignAnalytics(campaignId: number): Promise<CampaignAnalytics | null> {
+    const sql = `
         WITH campaign_data AS (
     SELECT 
         c.id,
@@ -51,14 +51,13 @@ SELECT
     cd.created_at
 FROM campaign_data cd
 LEFT JOIN log_stats ls ON cd.id = ls.campaign_id
-LEFT JOIN tracking_stats ts ON cd.id = ts.campaign_id`;
+LEFT JOIN tracking_stats ts ON cd.id = ts.campaign_id`
 
-        const rows = await query<CampaignAnalytics>(sql,[campaignId]);
-        return rows.length > 0 ? rows[0] : null;
+    const rows = await query<CampaignAnalytics>(sql, [campaignId])
+    return rows.length > 0 ? rows[0] : null
+  }
 
-    }
-
-    async getAllCampaignsAnalytics(): Promise<CampaignAnalytics[]> {
+  async getAllCampaignsAnalytics(): Promise<CampaignAnalytics[]> {
     const sql = `
       WITH campaign_data AS (
         SELECT 
@@ -110,8 +109,8 @@ LEFT JOIN tracking_stats ts ON cd.id = ts.campaign_id`;
       LEFT JOIN log_stats ls ON cd.id = ls.campaign_id
       LEFT JOIN tracking_stats ts ON cd.id = ts.campaign_id
       ORDER BY cd.created_at DESC
-    `;
+    `
 
-    return await query(sql);
-    }
+    return await query(sql)
+  }
 }
