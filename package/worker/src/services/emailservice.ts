@@ -4,21 +4,28 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 export class EmailService {
-  private transport: Transporter
+  private transport!: Transporter
   private trackUrlBase: string
+  private isMockMode: boolean
 
   constructor() {
     this.trackUrlBase = process.env.TRACKER_URL || 'http://localhost:3002/track'
-    this.transport = nodemailer.createTransport({
+    this.isMockMode = process.env.SMTP_MOCK === 'true'
+    if(this.isMockMode){
+      console.log("Mocking mode is enabled Email will be simulated not sent")
+
+    } else{
+      this.transport = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'sandbox.smtp.mailtrap.io',
       port: Number(process.env.SMTP_PORT) || 2525,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
-    })
+    });
 
     console.log(' SMTP transporter initialized')
+    }
   }
 
   private injectTrackingPixel(html: string, campaignId: number, subscriberId: number): string {

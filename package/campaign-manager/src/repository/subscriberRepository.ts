@@ -28,6 +28,7 @@ export class SubscriberRepository {
     const sql = 'SELECT COUNT(*) as count FROM subscribers'
     const rows = await query(sql)
     return parseInt(rows[0].count)
+  
   }
 
   async bulkInsert(emails: string[]): Promise<{ inserted: number; duplicates: number }> {
@@ -73,7 +74,7 @@ export class SubscriberRepository {
 
       await client.query('COMMIT')
 
-      console.log(`✅ Bulk insert completed: ${inserted} inserted, ${duplicates} duplicates`)
+      console.log(`Bulk insert completed: ${inserted} inserted, ${duplicates} duplicates`)
 
       return { inserted, duplicates }
     } catch (error) {
